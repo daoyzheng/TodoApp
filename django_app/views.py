@@ -5,23 +5,22 @@ from rest_framework.response import Response
 from django_app.models import Todo
 from django_app.serializers import TodoSerializer
 from rest_framework import viewsets
+from django_filters import rest_framework as filters
 
 # Create your views here.
+class TodoFilter(filters.FilterSet):
+    class Meta:
+        model = Todo
+        fields = {
+            'state' : ['icontains'],
+            'dueDate' : ['iexact', 'lte', 'gte']
+        }
+
 class TodoView(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+    filterset_class = TodoFilter
 
-    def get_queryset(self):
-        """
-        Optionally restricts the returned todos,
-        by filtering against a `state` query parameter in the URL.
-        """
-        queryset = Todo.objects.all()
-        state = self.request.query_params.get('state', None)
-        due_date = self.request.query_params.get('dueDate', None)
-        if state and due_date is not None:
-            queryset = queryset.filter(state__icontains=state, dueDate__gt=due_date)
-        return queryset
 
 
 

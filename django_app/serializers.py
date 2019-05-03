@@ -1,13 +1,9 @@
 from rest_framework import serializers
-from django_app.models import Todo, State
+from django_app.models import Todo
 
-class TodoSerializer(serializers.HyperlinkedModelSerializer):
+class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ('id', 'url', 'text', 'dueDate', 'state')
+        fields = ('id', 'text', 'dueDate', 'state')
 
-class StateSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = State
-        fields = ('id', 'url', 'status')
 

@@ -18,8 +18,9 @@ class TodoView(viewsets.ModelViewSet):
         """
         queryset = Todo.objects.all()
         state = self.request.query_params.get('state', None)
-        if state is not None:
-            queryset = queryset.filter(state__exact=state)
+        due_date = self.request.query_params.get('dueDate', None)
+        if state and due_date is not None:
+            queryset = queryset.filter(state__icontains=state, dueDate__gt=due_date)
         return queryset
 
 

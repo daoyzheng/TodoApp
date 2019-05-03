@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .api import TodoViewSet
+from django_app.api import TodoViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()

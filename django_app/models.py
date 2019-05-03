@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime, timedelta
 
 # Create your models here.
 class State(models.Model):
@@ -10,6 +9,6 @@ class State(models.Model):
 
 class Todo(models.Model):
     text = models.CharField(max_length=200)
-    dueDate = models.DateTimeField(default=datetime.now()+timedelta(days=7))
+    dueDate = models.DateField()
     state = models.ForeignKey(State, on_delete=models.CASCADE)
 

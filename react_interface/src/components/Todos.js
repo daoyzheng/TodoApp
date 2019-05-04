@@ -7,7 +7,7 @@ export class Todos extends Component {
     return (
       <div>
             {this.props.todos.map((todo) => (
-                <TodoItem key={todo.id} todoItem={todo} /> 
+                <TodoItem key={todo.id} todoItem={todo} markComplete={this.props.markComplete}/> 
             ))}
       </div>
     )

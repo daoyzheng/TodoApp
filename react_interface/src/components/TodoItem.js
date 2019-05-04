@@ -10,10 +10,15 @@ export class TodoItem extends Component {
           color: this.props.todoItem.completed ? 'green' : 'red'
       }
   }  
+
   render() {
+    const { id, title } = this.props.todoItem;
     return (
       <div style={this.getStyle()}>
-          <p>{this.props.todoItem.title}</p>
+        <p>
+          <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />{' '}
+          {title}
+        </p>
       </div>
     )
   }

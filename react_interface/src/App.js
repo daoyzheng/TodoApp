@@ -27,7 +27,7 @@ class App extends Component {
                 <h1>Todo List</h1>
                 <Todos todos={this.state.todos} />
             </div>
-        );
+        )
     }
 }
 

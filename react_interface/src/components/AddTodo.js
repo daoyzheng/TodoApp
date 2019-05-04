@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class AddTodo extends Component {
+  state = {
+    title: ''
+  }
+
+  onChange = (e) =>
   render() {
     return (
         <form style={{display: 'flex'}}>
@@ -9,11 +14,13 @@ export class AddTodo extends Component {
                 name="title" 
                 placeholder="Add Todo ..." 
                 style={{flex: '10', padding: '5px'}}
+                value={this.state.title}
+                onChange={this.onChange}
             />
             <input 
                 type="submit" 
                 value="Submit" 
-                className="btn" 
+                className="btn"
                 style={{flex: '1'}}
             />
         </form>

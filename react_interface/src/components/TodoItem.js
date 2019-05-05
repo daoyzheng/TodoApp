@@ -11,6 +11,12 @@ export class TodoItem extends Component {
       }
   }  
 
+  onDropDownChange = (e) => {
+    let todoItem = Object.assign({}, this.props.todoItem)
+    todoItem.status = e.target.value;
+    this.setState({todoItem});
+  }
+
   render() {
     // extract from props
     const { id, text, dueDate, status } = this.props.todoItem;
@@ -18,7 +24,17 @@ export class TodoItem extends Component {
       <tr>
         <td>{text}</td>
         <td>{dueDate}</td>
-        <td>{status}</td>
+        <td>
+          <select 
+            value={status}
+            onChange={this.onDropDownChange}
+          >
+            <option value="TODO">TODO</option>  
+            <option value="IN-PROGRESS">IN-PROGRESS</option>  
+            <option value="DONE">DONE</option>  
+          </select>
+        </td>
+        <td><button>View</button> | <button>Delete</button></td>
       </tr>
       // {/* <div style={this.getStyle()}>
       //   <p>

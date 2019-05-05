@@ -19,6 +19,12 @@ export class AddTodo extends Component {
     console.log(text, dueDate, status);
     const todo = {text, dueDate, status};
     this.props.addTodos(todo);
+    // Reset back to empty fields
+    this.setState({
+      text: '',
+      dueDate: '',
+      status: ''
+    });
   }
 
   render() {
@@ -55,6 +61,7 @@ export class AddTodo extends Component {
               name="status"
               onChange={this.onChange}
             >
+              <option value="" disabled hidden>Todo Status</option>
               <option value="TODO">TODO</option>
               <option value="IN-PROGRESS">IN-PROGRESS</option>
               <option value="DONE">DONE</option>

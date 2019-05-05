@@ -9,6 +9,24 @@ export class Todos extends Component {
     this.props.getTodos();
   }
 
+  todoStyle = (todo) => {
+    let currDate = new Date();
+    // Convert string date to Date object
+    let dueDate = new Date(todo.dueDate);
+    console.log(currDate);
+    console.log(dueDate);
+    if(todo.status === "DONE") { 
+      return {
+        color: 'green'
+      }
+    } else {
+      if(currDate.getTime() > dueDate.getTime())
+      return {
+        color: 'red'
+      }
+    }
+  }
+
   render() {
     return (
       <div>
@@ -25,7 +43,7 @@ export class Todos extends Component {
             {
               this.props.todos.map((todo) => (
                 <tr key={todo.id}>
-                  <td>{todo.text}</td>
+                  <td style={this.todoStyle(todo)}>{todo.text}</td>
                   <td>{todo.dueDate}</td>
                   <td>{todo.status}</td>
                   <td>

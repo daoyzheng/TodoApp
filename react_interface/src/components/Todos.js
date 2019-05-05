@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {getTodos, deleteTodos} from '../actions/todos.js'
+import {getTodos, deleteTodos} from '../actions/todos'
 
 export class Todos extends Component {
   // When component mounts, make a request to django api 
@@ -18,6 +18,7 @@ export class Todos extends Component {
               <th>Todo</th>
               <th>Due Date</th>
               <th>Status</th>
+              <th />
             </tr>
           </thead>
           <tbody>

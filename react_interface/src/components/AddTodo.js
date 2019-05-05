@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import {addTodos} from '../actions/todos'
+
 
 export class AddTodo extends Component {
   state = {
@@ -10,16 +14,20 @@ export class AddTodo extends Component {
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   onSubmit = (e) => {
-      e.preventDefault();
-      this.props.addTodo(this.state.title);
-      this.setState({ title: ''});
+    e.preventDefault();
+    const { text, dueDate, status } = this.state;
+    console.log(text, dueDate, status);
+    const todo = {text, dueDate, status};
+    this.props.addTodos(todo);
   }
 
   render() {
     const {text, dueDate, status} = this.state
     return (
       <div className="card card-body mt-4 mb-4">
+        <h3>Add a new todo</h3>
         <form onSubmit={this.onSubmit} className="form-group">
+          <div className="form-group">
             <input 
               className="form-control"
               type="text" 
@@ -28,7 +36,9 @@ export class AddTodo extends Component {
               value={text}
               onChange={this.onChange}
             />
+          </div>
 
+          <div className="form-group">
             <input 
               className="form-control"
               type="date"
@@ -36,7 +46,9 @@ export class AddTodo extends Component {
               value={dueDate}
               onChange={this.onChange}
             />
+          </div>
 
+          <div className="form-group">
             <select
               className="form-control"
               value={status}
@@ -47,17 +59,25 @@ export class AddTodo extends Component {
               <option value="IN-PROGRESS">IN-PROGRESS</option>
               <option value="DONE">DONE</option>
             </select>
+          </div>
 
-            <input 
-                type="submit" 
-                value="Submit" 
-                className="btn"
-                style={{flex: '1'}}
-            />
+          <div className="form-group">
+            <button 
+              className="btn btn-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     )
   }
 }
 
-export default AddTodo
+// propTypes
+AddTodo.propTypes = {
+    addTodos: PropTypes.func.isRequired
+}
+
+export default connect(null, {addTodos})(AddTodo)

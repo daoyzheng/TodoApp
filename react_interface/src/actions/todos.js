@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_TODOS, DELETE_TODOS, ADD_TODOS} from './types'
+import {GET_TODOS, DELETE_TODOS, ADD_TODOS, SELECT_TODO} from './types'
 
 // Get todos
 export const getTodos = () => dispatch => {
@@ -35,6 +35,19 @@ export const addTodos = (todo) => dispatch => {
             dispatch({
                 type: ADD_TODOS,
                 payload: res.data
+            });
+        })
+        .catch(err => console.log(err));
+};
+
+// Selete todo
+export const selectTodo = (id) => dispatch => {
+    axios
+        .get(`/api/todos/${id}`)
+        .then(res => {
+            dispatch({
+                type: SELECT_TODO,
+                payload: res.data 
             });
         })
         .catch(err => console.log(err));

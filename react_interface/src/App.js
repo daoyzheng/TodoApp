@@ -4,6 +4,7 @@ import store from './store';
 import Todos from './components/Todos';
 import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
+import TodoDetails from './components/TodoDetails';
 
 class App extends Component {
     render() {
@@ -14,6 +15,7 @@ class App extends Component {
                         <Header />
                         <AddTodo />
                         <Todos />
+                        <TodoDetails />
                     </div>
                 </div>
             </Provider>

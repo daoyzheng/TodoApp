@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {Provider} from 'react-redux';
 import store from './store';
 import Todos from './components/Todos';
@@ -10,14 +11,20 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <div className="App">
-                    <div className="container">
-                        <Header />
-                        <AddTodo />
-                        <Todos />
-                        <TodoDetails />
+                <Router>
+                    <div className="App">
+                        <div className="container">
+                            <Header />
+                            <Route exact path="/" render={props => (
+                                <React.Fragment>
+                                    <AddTodo />
+                                    <Todos />
+                                </React.Fragment>
+                            )} />
+                            <Route path="/todoDetails" component={TodoDetails} />
+                        </div>
                     </div>
-                </div>
+                </Router>
             </Provider>
         )
     }

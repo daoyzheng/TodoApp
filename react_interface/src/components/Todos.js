@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {getTodos, deleteTodos, selectTodo} from '../actions/todos'
@@ -26,6 +27,7 @@ export class Todos extends Component {
   }
 
   render() {
+    let modalClose = () => this.setState({ modalShow: false});
     return (
       <div>
         <table className="table table-striped">
@@ -45,12 +47,13 @@ export class Todos extends Component {
                   <td>{todo.dueDate}</td>
                   <td>{todo.status}</td>
                   <td>
+                    <Link to="/todoDetails">
                     <button 
                       onClick={this.props.selectTodo.bind(this, todo.id)}
-                      className="btn btn-sm"
+                      className="btn btn-primary btn-sm"
                     >
                       View
-                    </button> | 
+                    </button></Link> |{' '}
 
                     <button 
                       onClick={this.props.deleteTodos.bind(this, todo.id)} 

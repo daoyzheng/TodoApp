@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import Todos from './Todos'
 
 export class TodoDetails extends Component {
   render() {
@@ -12,7 +11,7 @@ export class TodoDetails extends Component {
             <p>{this.props.todo.id}</p>
         </div>
         <div className="form-group">
-            <p style={Todos.todoStyle()}>{this.props.todo.text}</p>
+            <p>{this.props.todo.text}</p>
         </div>
         <div className="form-group">
             <p>{this.props.todo.dueDate}</p>

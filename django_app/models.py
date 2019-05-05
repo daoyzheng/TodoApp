@@ -4,7 +4,7 @@ from django.db import models
 
 class Todo(models.Model):
     TODO = "TODO"
-    IN_PROGRESS = "IN_PROGRESS"
+    IN_PROGRESS = "IN-PROGRESS"
     DONE = "DONE"
     Status_Choices = (
         (TODO, "Todo"),

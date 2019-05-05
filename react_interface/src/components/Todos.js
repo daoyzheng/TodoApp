@@ -6,10 +6,24 @@ export class Todos extends Component {
   render() {
     return (
       <div>
-            {this.props.todos.map((todo) => (
-                <TodoItem key={todo.id} todoItem={todo}
-                 markComplete={this.props.markComplete} delTodo={this.props.delTodo}/> 
-            ))}
+        <table>
+          <thead>
+            <tr>
+              <th>Todo</th>
+              <th>Due Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.todos.map((todo) => (
+                <TodoItem key={todo.id} todoItem={todo}/>
+              ))
+            }
+          </tbody>
+        </table>
+            {/* <TodoItem key={todo.id} todoItem={todo}
+              markComplete={this.props.markComplete} delTodo={this.props.delTodo}/>  */}
       </div>
     )
   }

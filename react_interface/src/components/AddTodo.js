@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 export class AddTodo extends Component {
   state = {
-    title: ''
+    text: '',
+    dueDate: '',
+    status: ''
   }
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -14,16 +16,38 @@ export class AddTodo extends Component {
   }
 
   render() {
+    const {text, dueDate, status} = this.state
     return (
-        <form onSubmit={this.onSubmit} style={{display: 'flex'}}>
+      <div className="card card-body mt-4 mb-4">
+        <form onSubmit={this.onSubmit} className="form-group">
             <input 
-                type="text" 
-                name="title" 
-                placeholder="Add Todo ..." 
-                style={{flex: '10', padding: '5px'}}
-                value={this.state.title}
-                onChange={this.onChange}
+              className="form-control"
+              type="text" 
+              name="text" 
+              placeholder="Add Todo ..." 
+              value={text}
+              onChange={this.onChange}
             />
+
+            <input 
+              className="form-control"
+              type="date"
+              name="dueDate"
+              value={dueDate}
+              onChange={this.onChange}
+            />
+
+            <select
+              className="form-control"
+              value={status}
+              name="status"
+              onChange={this.onChange}
+            >
+              <option value="TODO">TODO</option>
+              <option value="IN-PROGRESS">IN-PROGRESS</option>
+              <option value="DONE">DONE</option>
+            </select>
+
             <input 
                 type="submit" 
                 value="Submit" 
@@ -31,6 +55,7 @@ export class AddTodo extends Component {
                 style={{flex: '1'}}
             />
         </form>
+      </div>
     )
   }
 }

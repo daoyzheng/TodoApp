@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {getTodos} from '../actions/todos.js'
+import {getTodos, deleteTodos} from '../actions/todos.js'
 
 export class Todos extends Component {
   // When component mounts, make a request to django api 
@@ -27,7 +27,15 @@ export class Todos extends Component {
                   <td>{todo.text}</td>
                   <td>{todo.dueDate}</td>
                   <td>{todo.status}</td>
-                  <td><button className="btn btn-sm">View</button> | <button className="btn btn-danger btn-sm">Delete</button></td>
+                  <td>
+                    <button className="btn btn-sm">View</button> | 
+                    <button 
+                      onClick={this.props.deleteTodos.bind(this, todo.id)} 
+                      className="btn btn-danger btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))
             }
@@ -40,7 +48,9 @@ export class Todos extends Component {
 
 // propTypes
 Todos.propTypes = {
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.array.isRequired,
+    getTodos: PropTypes.func.isRequired,
+    deleteTodos: PropTypes.func.isRequired
 }
 
 // Map state from reducer to the prop of this component
@@ -48,4 +58,4 @@ const mapStateToProps = state => ({
   todos: state.todosReducer.todos
 });
 
-export default connect(mapStateToProps, {getTodos})(Todos)
+export default connect(mapStateToProps, {getTodos, deleteTodos})(Todos)

@@ -12,8 +12,23 @@ export class TodoItem extends Component {
   }  
 
   render() {
-    const { id, text } = this.props.todoItem;
+    // extract from props
+    const { id, text, dueDate, state } = this.props.todoItem;
     return (
+      <table>
+        <thead>
+          <tr>
+            <th>Todo</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{this.props.</td>
+          </tr>
+        </tbody>
+      </table>
       <div style={this.getStyle()}>
         <p>
           <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />{' '}

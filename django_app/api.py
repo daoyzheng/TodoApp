@@ -8,7 +8,7 @@ class TodoFilter(filters.FilterSet):
     class Meta:
         model = Todo
         fields = {
-            'state' : ['icontains'],
+            'status' : ['icontains'],
             'dueDate' : ['iexact', 'lte', 'gte']
         }
 

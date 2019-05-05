@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
-import TodoItem from './TodoItem'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {getTodos} from '../actions/todos.js'
 
 export class Todos extends Component {
+  // When component mounts, make a request to django api 
+  componentDidMount() {
+    this.props.getTodos();
+  }
+
   render() {
     return (
       <div>
-        <table>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Todo</th>
@@ -17,13 +23,16 @@ export class Todos extends Component {
           <tbody>
             {
               this.props.todos.map((todo) => (
-                <TodoItem key={todo.id} todoItem={todo}/>
+                <tr key={todo.id}>
+                  <td>{todo.text}</td>
+                  <td>{todo.dueDate}</td>
+                  <td>{todo.status}</td>
+                  <td><button className="btn btn-sm">View</button> | <button className="btn btn-danger btn-sm">Delete</button></td>
+                </tr>
               ))
             }
           </tbody>
         </table>
-            {/* <TodoItem key={todo.id} todoItem={todo}
-              markComplete={this.props.markComplete} delTodo={this.props.delTodo}/>  */}
       </div>
     )
   }
@@ -33,4 +42,10 @@ export class Todos extends Component {
 Todos.propTypes = {
     todos: PropTypes.array.isRequired
 }
-export default Todos
+
+// Map state from reducer to the prop of this component
+const mapStateToProps = state => ({
+  todos: state.todosReducer.todos
+});
+
+export default connect(mapStateToProps, {getTodos})(Todos)

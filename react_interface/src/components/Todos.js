@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {getTodos, deleteTodos, selectTodo} from '../actions/todos'
+import {getTodos, deleteTodos, selectTodo, sortTodo} from '../actions/todos'
 
 export class Todos extends Component {
   state = {
     text: '',
     dueDate: '',
-    status: ''
+    status: '',
+    ascending: true
   }
 
   // When component mounts, make a request to django api 
@@ -32,6 +33,18 @@ export class Todos extends Component {
     }
   }
 
+  sortDueDate = () => {
+    if(this.state.ascending) {
+      let str = "?ordering=-dueDate"
+      this.props.sortTodo(str)
+      this.setState({ascending: false})
+    } else {
+      let str = "?ordering=dueDate"
+      this.props.sortTodo(str)
+      this.setState({ascending: true})
+    }
+  }
+
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
@@ -41,7 +54,7 @@ export class Todos extends Component {
           <thead>
             <tr>
               <th>Todo</th>
-              <th>Due Date</th>
+              <th onClick={this.sortDueDate}>Due Date</th>
               <th>Status</th>
               <th></th>
               <th></th>
@@ -101,7 +114,8 @@ Todos.propTypes = {
     todos: PropTypes.array.isRequired,
     getTodos: PropTypes.func.isRequired,
     deleteTodos: PropTypes.func.isRequired,
-    selectTodo: PropTypes.func.isRequired
+    selectTodo: PropTypes.func.isRequired,
+    sortTodo: PropTypes.func.isRequired
 }
 
 // Map state from reducer to the prop of this component
@@ -109,4 +123,4 @@ const mapStateToProps = state => ({
   todos: state.todosReducer.todos
 });
 
-export default connect(mapStateToProps, {getTodos, deleteTodos, selectTodo})(Todos)
+export default connect(mapStateToProps, {getTodos, deleteTodos, selectTodo, sortTodo})(Todos)

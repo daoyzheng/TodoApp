@@ -4,12 +4,26 @@ import PropTypes from 'prop-types'
 
 export class TodoDetails extends Component {
   state = {
-    text: this.props.todo.text,
-    dueDate: this.props.todo.dueDate,
-    status: this.props.todo.status
+    id: '',
+    text: '',
+    dueDate: '',
+    status: '',
+    firstLoad: true
   }
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  onChange = (e) => this.setState({ status: e.target.value, firstLoad: false });
+
+  onLoad = (e) => this.setState({ [e.target.name]: e.target.value})
+
+  updateTodo = (e) => {
+    e.preventDefault();
+    const { text, dueDate, status } = this.state;
+    console.log(text, dueDate, status);
+  }
+  
+  componentDidMount() {
+    let textEvent = document.getElementById("textDisplay");
+  }
 
   render() {
     const {text, dueDate, status} = this.state
@@ -21,10 +35,22 @@ export class TodoDetails extends Component {
             <input 
               className="form-control"
               type="text" 
+              name="id" 
+              readOnly
+              value={this.props.todo.id}
+              onLoad={this.onLoad}
+            />
+
+          </div>
+          <div className="form-group">
+            <input 
+              className="form-control"
+              id="textDisplay"
+              type="text" 
               name="text" 
               readOnly
-              value={text}
-              onChange={this.onChange}
+              value={this.props.todo.text}
+              onLoad={this.onLoad}
             />
           </div>
 
@@ -33,15 +59,16 @@ export class TodoDetails extends Component {
               className="form-control"
               type="date"
               name="dueDate"
-              value={dueDate}
-              onChange={this.onChange}
+              readOnly
+              value={this.props.todo.dueDate}
+              onLoad={this.onLoad}
             />
           </div>
 
           <div className="form-group">
             <select
               className="form-control"
-              value={status}
+              value={this.state.firstLoad ? this.props.todo.status : this.state.status}
               name="status"
               onChange={this.onChange}
             >
@@ -55,9 +82,9 @@ export class TodoDetails extends Component {
           <div className="form-group">
             <button 
               className="btn btn-primary"
-              type="submit"
+              onClick={this.updateTodo}
             >
-              Submit
+              Update
             </button>
           </div>
         </form>

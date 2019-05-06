@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_TODOS, DELETE_TODOS, ADD_TODOS, SELECT_TODO, SORT_TODO} from './types'
+import {GET_TODOS, DELETE_TODOS, ADD_TODOS, SELECT_TODO, SORT_TODO, UPDATE_TODO} from './types'
 
 // Get todos
 export const getTodos = () => dispatch => {
@@ -63,4 +63,18 @@ export const sortTodo = (str) => dispatch => {
                 payload: res.data
             });
         })
+        .catch(err => console.log(err));
+};
+
+// Update todo
+export const updateTodo = (todo) => dispatch => {
+    axios
+        .put(`/api/todos/${todo.id}/`, todo)
+        .then(res => {
+            dispatch({
+                type: UPDATE_TODO,
+                payload: res.data
+            });
+        })
+        .catch(err => console.log(err));
 };

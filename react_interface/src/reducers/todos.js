@@ -1,4 +1,4 @@
-import {GET_TODOS, DELETE_TODOS, ADD_TODOS, SELECT_TODO, SORT_TODO} from '../actions/types.js';
+import {GET_TODOS, DELETE_TODOS, ADD_TODOS, SELECT_TODO, SORT_TODO, UPDATE_TODO} from '../actions/types.js';
 
 const initialState = {
     todos: [],
@@ -31,6 +31,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 todos: action.payload
+            }
+        case UPDATE_TODO:
+            return {
+                ...state,
+                todo: action.payload
             }
         default:
             return state;

@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {updateTodo} from '../actions/todos'
 
 export class TodoDetails extends Component {
   state = {
-    id: '',
-    text: '',
-    dueDate: '',
     status: '',
     firstLoad: true
   }
 
   onChange = (e) => this.setState({ status: e.target.value, firstLoad: false });
 
-  onLoad = (e) => this.setState({ [e.target.name]: e.target.value})
-
   updateTodo = (e) => {
     e.preventDefault();
-    const { text, dueDate, status } = this.state;
-    console.log(text, dueDate, status);
-  }
-  
-  componentDidMount() {
-    let textEvent = document.getElementById("textDisplay");
+    let id = this.props.todo.id;
+    let text = this.props.todo.text;
+    let dueDate = this.props.todo.dueDate;
+    let status = this.state.status;
+    const todo = {id,text,dueDate,status};
+    this.props.updateTodo(todo);
   }
 
   render() {
@@ -38,7 +34,6 @@ export class TodoDetails extends Component {
               name="id" 
               readOnly
               value={this.props.todo.id}
-              onLoad={this.onLoad}
             />
 
           </div>
@@ -50,7 +45,6 @@ export class TodoDetails extends Component {
               name="text" 
               readOnly
               value={this.props.todo.text}
-              onLoad={this.onLoad}
             />
           </div>
 
@@ -61,13 +55,13 @@ export class TodoDetails extends Component {
               name="dueDate"
               readOnly
               value={this.props.todo.dueDate}
-              onLoad={this.onLoad}
             />
           </div>
 
           <div className="form-group">
             <select
               className="form-control"
+              defaultValue={this.props.todo.status}
               value={this.state.firstLoad ? this.props.todo.status : this.state.status}
               name="status"
               onChange={this.onChange}
@@ -95,7 +89,8 @@ export class TodoDetails extends Component {
 
 // propTypes
 TodoDetails.propTypes = {
-    todo: PropTypes.object.isRequired
+    todo: PropTypes.object.isRequired,
+    updateTodo: PropTypes.func.isRequired
 }
 
 // Map state from reducer to the prop of this component
@@ -103,4 +98,4 @@ const mapStateToProps = state => ({
   todo: state.todosReducer.todo
 });
 
-export default connect(mapStateToProps)(TodoDetails)
+export default connect(mapStateToProps, {updateTodo})(TodoDetails)

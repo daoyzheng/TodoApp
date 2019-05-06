@@ -33,7 +33,7 @@ export class Todos extends Component {
     }
   }
 
-  sortDueDate = () => {
+  sortByDueDate = () => {
     if(this.state.ascending) {
       let str = "?ordering=-dueDate"
       this.props.sortTodo(str)
@@ -54,10 +54,9 @@ export class Todos extends Component {
           <thead>
             <tr>
               <th>Todo</th>
-              <th onClick={this.sortDueDate}>Due Date</th>
+              <th onClick={this.sortByDueDate}>Due Date</th>
               <th>Status</th>
-              <th></th>
-              <th></th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -66,32 +65,14 @@ export class Todos extends Component {
                 <tr key={todo.id}>
                   <td style={this.todoStyle(todo)}>{todo.text}</td>
                   <td>{todo.dueDate}</td>
-                  <td>
-                    <select
-                      className="form-control"
-                      value={todo.status}
-                      name="status"
-                      onChange={this.onChange}
-                    >
-                      <option value="" disabled hidden>Todo Status</option>
-                      <option value="TODO">TODO</option>
-                      <option value="IN-PROGRESS">IN-PROGRESS</option>
-                      <option value="DONE">DONE</option>
-                    </select>
-                  </td>
                   <td>{todo.status}</td>
                   <td>
                     <Link to="/todoDetails">
                     <button 
                       onClick={this.props.selectTodo.bind(this, todo.id)}
                       className="btn btn-primary btn-sm"
-                    >View
+                    >Details
                     </button></Link> |{' '}
-
-                    <button
-                      className="btn btn-primary btn-sm" 
-                    >Update
-                    </button> |{' '}
 
                     <button 
                       onClick={this.props.deleteTodos.bind(this, todo.id)} 

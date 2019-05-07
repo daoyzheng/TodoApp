@@ -59,6 +59,7 @@ export class Todos extends Component {
   render() {
     return (
       <div className="table-responsive">
+	    <p style={{fontSize: '12px'}}>* Click on Due Date to sort</p>
         <table className="table table-striped">
           <thead>
             <tr>

@@ -17,7 +17,7 @@ daozheng@ubuntu:~$ mkdir Todo
 ```
 - Change into Todo directory
 ```console
-daozheng@ubuntu:~/Todo$ cd Todo
+daozheng@ubuntu:~$ cd Todo
 ```
 - Git clone TodoApp from github
 ```console

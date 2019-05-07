@@ -110,7 +110,7 @@ module.exports = {
 ```
 "dev": "webpack --mode development --watch ./TodoApp/react_interface/src/index.js --output ./TodoApp/react_interface/static/frontend/main.js"
 ```
-- Now when you run `npm dev run` command on the command line, any changes you made to the code inside the react_interface folder will automatically be reflected on the browser that's on the URL `localhost:8000`
+- Now when you run `npm dev run` command on the command line, any changes you made to the code inside the react_interface folder will automatically be reflected on the browser with the URL `localhost:8000`
 
         
 

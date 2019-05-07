@@ -62,11 +62,17 @@ daozheng@ubuntu:~/Todo/TodoApp$ cd ..
 ```console
 daozheng@ubuntu:~/Todo$ pipenv shell
 ```
-- Run the following command insie the Todo folder
+- Run the following command inside the Todo folder
 ```
 (Todo) daozheng@ubuntu:~/Todo$ npm init -y
+```
+```
 (Todo) daozheng@ubuntu:~/Todo$ npm i -D webpack webpack-cli
+```
+```
 (Todo) daozheng@ubuntu:~/Todo$ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+```
+```
 (Todo) daozheng@ubuntu:~/Todo$ npm i react react-router-dom react-dom prop-types axios redux-devtools-extension redux react-redux redux-thunk
 ```
 

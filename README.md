@@ -63,21 +63,21 @@ daozheng@ubuntu:~/Todo/TodoApp$ cd ..
 daozheng@ubuntu:~/Todo$ pipenv shell
 ```
 - Run the following command inside the Todo folder
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ npm init -y
 ```
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ npm i -D webpack webpack-cli
 ```
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
 ```
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ npm i react react-router-dom react-dom prop-types axios redux-devtools-extension redux react-redux redux-thunk
 ```
 
 - Create a file called `.babelrc` inside the Todo folder, and add the following content inside the `.babelrc` file
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ vim .babelrc
 ```
 ```
@@ -87,7 +87,7 @@ daozheng@ubuntu:~/Todo$ pipenv shell
 }
 ```
 - Create a `webpack.config.js` file also inside the Todo folder, and add the following content inside it
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ vim webpack.config.js
 ```
 ```
@@ -104,7 +104,7 @@ module.exports = {
 }
 ```
 - Now open the `package.json` file, under `"script":` delete the line with `"test"` and add the following
-```
+```console
 (Todo) daozheng@ubuntu:~/Todo$ vim package.json
 ```
 ```

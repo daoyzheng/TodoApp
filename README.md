@@ -1,19 +1,120 @@
 # TodoApp
-A todo application that uses React.js and Redux to create the frontend and incorporates a backend django rest API
+A todo application that uses React.js and Redux to create the frontend and incorporates a backend django RESTful API
 
-## Prequisites
+## Prerequisites
 - Python 3.7.x
-- Nodejs and npm
+- pip3
+- pipenv
+- git
+- nodejs (optional)
+- npm (optional)
 
-## Installation
-Django App
-- `sudo apt install python-pip`
-- `sudo pip3 install pipenv`
-- `pipenv shell`
-- `pipenv install django django-filter djangorestframework`
+## Installation guide
+**Django App**
+- Create a folder called Todo anywhere in your home directory
+```console
+daozheng@ubuntu:~$ mkdir Todo
+```
+- Change into Todo directory
+```console
+daozheng@ubuntu:~/Todo$ cd Todo
+```
+- Git clone TodoApp from github
+```console
+daozheng@ubuntu:~/Todo$ git clone https://github.com/daoyzheng/TodoApp.git
+```
+- Run virtual environment in the Todo folder
+```console
+daozheng@ubuntu:~/Todo$ pipenv shell
+```
+- Now that you are in the virtual environment, run `pipenv install` to install necessay packages
+```console
+(Todo) daozheng@ubuntu:~/Todo$ pipenv install django django-filter djangorestframework
+```
+
+## Running the app
+- To run the app, first run the virtual environment inside the Todo folder
+```console
+daozheng@ubuntu:~/Todo$ pipenv shell
+```
+- Change into the TodoApp folder
+```console
+(Todo) daozheng@ubuntu:~/Todo$ cd TodoApp
+```
+- Run the server
+```console
+(Todo) daozheng@ubuntu:~/Todo/TodoApp$ python manage.py runserver
+```
+**Django RESTful API**
+- Now that the server is running, open your web browser and type in `localhost:8000/api/todos/` in the URL field, you should be able to see a list of Todo objects in JSON format
+- To view a specific Todo object, type in `localhost:8000/api/todos/2` for example, there should only be one object listed
+
+**React.js interface**
+- To view the user interface, open your web  browser and type in `localhost:8000` in the URL field.
+
+## Optional Installation
+- To be able to make changes to the React.js part, the following additional installations are required
+- Change back to the Todo folder
+```console
+daozheng@ubuntu:~/Todo/TodoApp$ cd ..
+```
+- Run the virtual environmnet
+```console
+daozheng@ubuntu:~/Todo$ pipenv shell
+```
+- Run the following command inside the Todo folder
+```console
+(Todo) daozheng@ubuntu:~/Todo$ npm init -y
+```
+```console
+(Todo) daozheng@ubuntu:~/Todo$ npm i -D webpack webpack-cli
+```
+```console
+(Todo) daozheng@ubuntu:~/Todo$ npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+```
+```console
+(Todo) daozheng@ubuntu:~/Todo$ npm i react react-router-dom react-dom prop-types axios redux-devtools-extension redux react-redux redux-thunk
+```
+
+- Create a file called `.babelrc` inside the Todo folder, and add the following content inside the `.babelrc` file
+```console
+(Todo) daozheng@ubuntu:~/Todo$ vim .babelrc
+```
+```
+{
+        "presets": ["@babel/preset-env", "@babel/preset-react"],
+        "plugins": ["transform-class-properties"]
+}
+```
+- Create a `webpack.config.js` file also inside the Todo folder, and add the following content inside it
+```console
+(Todo) daozheng@ubuntu:~/Todo$ vim webpack.config.js
+```
+```
+module.exports = {
+        module: {
+                rules: [{
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use: {
+                                loader: "babel-loader"
+                        }
+                }]
+        }
+}
+```
+- Now open the `package.json` file, under `"script":` delete the line with `"test"` and add the following
+```console
+(Todo) daozheng@ubuntu:~/Todo$ vim package.json
+```
+```
+"dev": "webpack --mode development --watch ./TodoApp/react_interface/src/index.js --output ./TodoApp/react_interface/static/frontend/main.js"
+```
+- Now when you run `npm dev run` command on the command line, any changes you made to the code inside the react_interface folder will automatically be reflected on the browser that's on the URL `localhost:8000`
+
+        
 
 
-React.js
-- `npm init -y`
-- `npm i -D webpack webpack-cli`
-- `npm i -D 
+
+
+

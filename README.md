@@ -1,5 +1,5 @@
 # TodoApp
-A todo application that uses React.js and Redux to create the frontend and incorporates a backend django rest API
+A todo application that uses React.js and Redux to create the frontend and incorporates a backend django RESTful API
 
 ## Prerequisites
 - Python 3.7.x

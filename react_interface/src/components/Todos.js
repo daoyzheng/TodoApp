@@ -23,13 +23,22 @@ export class Todos extends Component {
     let dueDate = new Date(todo.dueDate);
     if(todo.status === "DONE") { 
       return {
-        color: 'green'
+        color: 'green',
       }
     } else {
       if(currDate.getTime() > dueDate.getTime())
       return {
-        color: 'red'
+        color: 'red',
       }
+    }
+  }
+
+  wrapText = () => {
+    return {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      width: '30rem',
+      textOverflow: 'ellipsis'
     }
   }
 
@@ -49,7 +58,7 @@ export class Todos extends Component {
 
   render() {
     return (
-      <div>
+      <div className="table-responsive">
         <table className="table table-striped">
           <thead>
             <tr>
@@ -63,7 +72,7 @@ export class Todos extends Component {
             {
               this.props.todos.map((todo) => (
                 <tr key={todo.id}>
-                  <td style={this.todoStyle(todo)}>{todo.text}</td>
+                  <td style={this.todoStyle(todo)}><div style={this.wrapText()}>{todo.text}</div></td>
                   <td>{todo.dueDate}</td>
                   <td>{todo.status}</td>
                   <td>

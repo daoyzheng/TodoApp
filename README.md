@@ -45,7 +45,7 @@ daozheng@ubuntu:~/Todo$ pipenv shell
 ```console
 (Todo) daozheng@ubuntu:~/Todo/TodoApp$ python manage.py runserver
 ```
-**Django RESTFUL API**
+**Django RESTful API**
 - Now that the server is running, open your web browser and type in `localhost:8000/api/todos/` in the URL field, you should be able to see a list of Todo objects in JSON format
 - To view a specific Todo object, type in `localhost:8000/api/todos/2` for example, there should only be one object listed
 
